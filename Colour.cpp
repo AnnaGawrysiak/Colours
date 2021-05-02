@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm> 
+#include <math.h>
 
 Colour::Colour()
 {
@@ -111,8 +112,67 @@ void Colour::Convert_to_HSV()
 	set_hsv_shade(hue, saturation, value);
 }
 
+void Colour::Convert_to_RGB()
+{
+	double hue = hsv_shade.at(0);
+	double saturation = hsv_shade.at(1);
+	double value = hsv_shade.at(2);
+
+	double chroma = (value / 100.0) * (saturation / 100.0);
+	double rgb_min = (value / 100.0) - chroma;
+
+	double intermediate = chroma * (1 - fabs(fmod(hue / 60.0, 2) - 1));
+
+	if (hue >= 0 && hue < 60)
+	{
+		set_rgb_shade((chroma + rgb_min)*255, (intermediate + rgb_min)*255, rgb_min*255);
+		return;
+	}
+	else if (hue >= 60 && hue < 120)
+	{
+		set_rgb_shade((intermediate + rgb_min)*255, (chroma + rgb_min)*255, rgb_min*255);
+		return;
+	}
+
+	else if (hue >= 120 && hue < 180)
+	{
+		set_rgb_shade(rgb_min*255, (chroma + rgb_min)*255, (rgb_min + intermediate)*255);
+		return;
+	}
+
+	else if (hue >= 180 && hue < 240)
+	{
+		set_rgb_shade(rgb_min*255, (intermediate + rgb_min)*255, (rgb_min + chroma)*255);
+		return;
+	}
+
+	else if (hue >= 240 && hue < 300)
+	{
+		set_rgb_shade((rgb_min + intermediate)*255, rgb_min*255, (rgb_min + chroma)*255);
+		return;
+	}
+
+	else if (hue >= 300 && hue < 360)
+	{
+		set_rgb_shade((rgb_min + chroma)*255, rgb_min*255, (rgb_min + intermediate)*255);
+		return;
+	}
+
+	else
+	{
+		set_rgb_shade(rgb_min*255, rgb_min*255, rgb_min*255);
+		return;
+	}
+}
+
 void Colour::print_hsv()
 {
 	std::cout << "Hue: " << hsv_shade.at(0) << ", saturation: " << hsv_shade.at(1) << ", value: " << hsv_shade.at(2) << std::endl;
 	
+}
+
+void Colour::print_rgb()
+{
+	std::cout << "Red: " << rgb_shade.at(0) << ", green: " << rgb_shade.at(1) << ", blue: " << rgb_shade.at(2) << std::endl;
+
 }

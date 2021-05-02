@@ -53,6 +53,46 @@ bool Test::Test2()
 
 	return false;
 }
+
+bool Test::Test3()
+{
+	Colour my_colour;
+	my_colour.set_hsv_shade(30.0, 63.56589147286821, 50.588235294117645);
+	my_colour.Convert_to_RGB();
+
+	std::vector <double> expected_result;
+	expected_result.push_back(129);
+	expected_result.push_back(88);
+	expected_result.push_back(47);
+
+	std::vector <double> result = my_colour.get_rgb_shade();
+
+	if (result == expected_result)
+		return true;
+
+	return false;
+}
+
+bool Test::Test4()
+{
+	Colour my_colour;
+	my_colour.set_hsv_shade(114.78260869565217, 44.230769230769226, 20.392156862745097);
+	my_colour.Convert_to_RGB();
+
+	std::vector <double> expected_result;
+	expected_result.push_back(31);
+	expected_result.push_back(52);
+	expected_result.push_back(29);
+
+	std::vector <double> result = my_colour.get_rgb_shade();
+
+	if (result == expected_result)
+		return true;
+
+	return false;
+}
+
+
 void Test::run()
 {
 	if (Test1())
@@ -66,7 +106,7 @@ void Test::run()
 	else
 		std::cout << "Test 2: Porazka " << std::endl;
 
-	/*
+	
 	if (Test3())
 		std::cout << "Test 3: Sukces! " << std::endl;
 	else
@@ -77,17 +117,5 @@ void Test::run()
 		std::cout << "Test 4: Sukces! " << std::endl;
 	else
 		std::cout << "Test 4: Porazka " << std::endl;
-
-	if (Test5())
-		std::cout << "Test 5: Sukces! " << std::endl;
-	else
-		std::cout << "Test 5: Porazka " << std::endl;
-
-
-	if (Test6())
-		std::cout << "Test 6: Sukces! " << std::endl;
-	else
-		std::cout << "Test 6: Porazka " << std::endl;
-	*/
 
 }

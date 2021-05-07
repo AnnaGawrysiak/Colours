@@ -1,5 +1,6 @@
 #pragma once
-#include "Colour.h"
+#include "RGB.h"
+#include "HSV.h"
 
 class Test
 {

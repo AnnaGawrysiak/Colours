@@ -139,12 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Colour.cpp" />
+    <ClCompile Include="HSV.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Convert_to_RGB.cpp" />
+    <ClCompile Include="Convert_to_HSV.cpp" />
+    <ClCompile Include="RGB.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Colour.h" />
+    <ClInclude Include="Convert_to_RGB.h" />
+    <ClInclude Include="Convert_to_HSV.h" />
+    <ClInclude Include="HSV.h" />
+    <ClInclude Include="RGB.h" />
     <ClInclude Include="Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

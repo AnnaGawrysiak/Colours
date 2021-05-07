@@ -1,6 +1,10 @@
 #include "Test.h"
 #include <iostream>
 #include <vector>
+#include "Convert_to_RGB.h"
+#include "Convert_to_HSV.h"
+#include "RGB.h"
+#include "HSV.h"
 
 Test::Test()
 {
@@ -18,16 +22,8 @@ Test* Test::get_instance()
 
 bool Test::Test1()
 {
-	Colour my_colour;
-	my_colour.set_rgb_shade(129, 88, 47);
-	my_colour.Convert_to_HSV();
-
-	std::vector <double> expected_result;
-	expected_result.push_back(30.0);
-	expected_result.push_back(63.56589147286821);
-	expected_result.push_back(50.588235294117645);
-
-	std::vector <double> result = my_colour.get_hsv_shade();
+	HSV result = Colour_Converter::Convert_to_HSV(129, 88, 47);
+	HSV expected_result(30.0, 63.56589147286821, 50.588235294117645);
 
 	if (result == expected_result)
 		return true;
@@ -37,16 +33,8 @@ bool Test::Test1()
 
 bool Test::Test2()
 {
-	Colour my_colour;
-	my_colour.set_rgb_shade(31, 52, 29);
-	my_colour.Convert_to_HSV();
-
-	std::vector <double> expected_result;
-	expected_result.push_back(114.78260869565217);
-	expected_result.push_back(44.230769230769226);
-	expected_result.push_back(20.392156862745097);
-
-	std::vector <double> result = my_colour.get_hsv_shade();
+	HSV result = Colour_Converter::Convert_to_HSV(31, 52, 29);
+	HSV expected_result(114.78260869565217, 44.230769230769226, 20.392156862745097);
 
 	if (result == expected_result)
 		return true;
@@ -56,16 +44,8 @@ bool Test::Test2()
 
 bool Test::Test3()
 {
-	Colour my_colour;
-	my_colour.set_hsv_shade(30.0, 63.56589147286821, 50.588235294117645);
-	my_colour.Convert_to_RGB();
-
-	std::vector <double> expected_result;
-	expected_result.push_back(129);
-	expected_result.push_back(88);
-	expected_result.push_back(47);
-
-	std::vector <double> result = my_colour.get_rgb_shade();
+	RGB result = Colour_Converter::Convert_to_RGB(30.0, 63.56589147286821, 50.588235294117645);
+	RGB expected_result(129, 88, 47);
 
 	if (result == expected_result)
 		return true;
@@ -75,16 +55,8 @@ bool Test::Test3()
 
 bool Test::Test4()
 {
-	Colour my_colour;
-	my_colour.set_hsv_shade(114.78260869565217, 44.230769230769226, 20.392156862745097);
-	my_colour.Convert_to_RGB();
-
-	std::vector <double> expected_result;
-	expected_result.push_back(31);
-	expected_result.push_back(52);
-	expected_result.push_back(29);
-
-	std::vector <double> result = my_colour.get_rgb_shade();
+	RGB result = Colour_Converter::Convert_to_RGB(114.78260869565217, 44.230769230769226, 20.392156862745097);
+	RGB expected_result(31, 52, 29);
 
 	if (result == expected_result)
 		return true;

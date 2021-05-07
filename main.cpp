@@ -1,13 +1,18 @@
 #include <iostream>
-#include "Colour.h"
 #include "Test.h"
+#include "Convert_to_RGB.h"
+#include "Convert_to_HSV.h"
+#include "RGB.h"
+#include "HSV.h"
 
 int main()
 {
+    
     Test* testowa = Test::get_instance();
     testowa->run();
     int choice = 0;
 
+    
     while (choice != 3)
     {
         std::cout << "What would you like to do? Press 1 if you wish to convert a colour to RGB. Press 2 if you want to convert to HSV. Press 3 to quit. " << std::endl;
@@ -30,15 +35,13 @@ int main()
                 std::cin >> value;
                 std::cout << " ." << std::endl;
 
-                Colour my_colour;
-                my_colour.set_hsv_shade(hue, saturation, value);
-                my_colour.Convert_to_RGB();
+                RGB rgb_shade = Colour_Converter::Convert_to_RGB(hue, saturation, value);
 
-                std::cout << " RGB equivalent: " << std::endl;
-                my_colour.print_rgb();
+                std::cout << " RGB equivalent: " << rgb_shade << std::endl;
+            
                 break;
             }
-
+           
             case 2:
             {
                 double red = 0;
@@ -54,12 +57,10 @@ int main()
                 std::cin >> blue;
                 std::cout << " ." << std::endl;
 
-                Colour my_colour;
-                my_colour.set_rgb_shade(red, green, blue);
-                my_colour.Convert_to_HSV();
+                HSV my_hsv = Colour_Converter::Convert_to_HSV(red, green, blue);
 
-                std::cout << " HSV equivalent: " << std::endl;
-                my_colour.print_hsv();
+                std::cout << " HSV equivalent: " << my_hsv << std::endl;
+                
                 break;
             }
 
@@ -72,12 +73,6 @@ int main()
             
     }
 
-    Colour my_colour;
-    my_colour.set_hsv_shade(30.0, 63.56589147286821, 50.588235294117645);
-    my_colour.Convert_to_RGB();
-
-    std::cout << " RGB equivalent: " << std::endl;
-    my_colour.print_rgb();
 
     return 0;
 }

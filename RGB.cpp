@@ -30,3 +30,35 @@ bool RGB::operator==(const RGB& rhs)
 
 	return false;
 }
+
+double RGB::get_red() const
+{
+	return red;
+}
+double RGB::get_green() const
+{
+	return green;
+}
+double RGB::get_blue() const
+{
+	return blue;
+}
+
+RGB RGB::modify_red(double red_)
+{
+	RGB shade(red_, green, blue);
+
+	return shade;
+}
+RGB RGB::modify_green(double green_)
+{
+	RGB shade(red, green_, blue);
+
+	return shade;
+}
+RGB RGB::modify_blue(double blue_)
+{
+	RGB shade(red, green, blue_);
+
+	return shade;
+}

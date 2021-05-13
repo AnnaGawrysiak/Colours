@@ -141,14 +141,12 @@
   <ItemGroup>
     <ClCompile Include="HSV.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Convert_to_RGB.cpp" />
-    <ClCompile Include="Convert_to_HSV.cpp" />
+    <ClCompile Include="Colour_Converter.cpp" />
     <ClCompile Include="RGB.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Convert_to_RGB.h" />
-    <ClInclude Include="Convert_to_HSV.h" />
+    <ClInclude Include="Colour_Converter.h" />
     <ClInclude Include="HSV.h" />
     <ClInclude Include="RGB.h" />
     <ClInclude Include="Test.h" />

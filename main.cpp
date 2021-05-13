@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Test.h"
-#include "Convert_to_RGB.h"
-#include "Convert_to_HSV.h"
+#include "Colour_Converter.h"
 #include "RGB.h"
 #include "HSV.h"
 
@@ -35,7 +34,9 @@ int main()
                 std::cin >> value;
                 std::cout << " ." << std::endl;
 
-                RGB rgb_shade = Colour_Converter::Convert_to_RGB(hue, saturation, value);
+                HSV hsv(hue, saturation, value);
+
+                RGB rgb_shade = Colour_Converter::Convert_to_RGB(hsv);
 
                 std::cout << " RGB equivalent: " << rgb_shade << std::endl;
             
@@ -57,7 +58,9 @@ int main()
                 std::cin >> blue;
                 std::cout << " ." << std::endl;
 
-                HSV my_hsv = Colour_Converter::Convert_to_HSV(red, green, blue);
+                RGB rgb(red, green, blue);
+
+                HSV my_hsv = Colour_Converter::Convert_to_HSV(rgb);
 
                 std::cout << " HSV equivalent: " << my_hsv << std::endl;
                 

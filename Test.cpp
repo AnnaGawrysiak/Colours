@@ -1,8 +1,7 @@
 #include "Test.h"
 #include <iostream>
 #include <vector>
-#include "Convert_to_RGB.h"
-#include "Convert_to_HSV.h"
+#include "Colour_Converter.h"
 #include "RGB.h"
 #include "HSV.h"
 
@@ -22,7 +21,9 @@ Test* Test::get_instance()
 
 bool Test::Test1()
 {
-	HSV result = Colour_Converter::Convert_to_HSV(129, 88, 47);
+	RGB rgb(129, 88, 47);
+
+	HSV result = Colour_Converter::Convert_to_HSV(rgb);
 	HSV expected_result(30.0, 63.56589147286821, 50.588235294117645);
 
 	if (result == expected_result)
@@ -33,7 +34,8 @@ bool Test::Test1()
 
 bool Test::Test2()
 {
-	HSV result = Colour_Converter::Convert_to_HSV(31, 52, 29);
+	RGB rgb(31, 52, 29);
+	HSV result = Colour_Converter::Convert_to_HSV(rgb);
 	HSV expected_result(114.78260869565217, 44.230769230769226, 20.392156862745097);
 
 	if (result == expected_result)
@@ -44,7 +46,9 @@ bool Test::Test2()
 
 bool Test::Test3()
 {
-	RGB result = Colour_Converter::Convert_to_RGB(30.0, 63.56589147286821, 50.588235294117645);
+	HSV hsv(30.0, 63.56589147286821, 50.588235294117645);
+
+	RGB result = Colour_Converter::Convert_to_RGB(hsv);
 	RGB expected_result(129, 88, 47);
 
 	if (result == expected_result)
@@ -55,7 +59,9 @@ bool Test::Test3()
 
 bool Test::Test4()
 {
-	RGB result = Colour_Converter::Convert_to_RGB(114.78260869565217, 44.230769230769226, 20.392156862745097);
+	HSV hsv(114.78260869565217, 44.230769230769226, 20.392156862745097);
+
+	RGB result = Colour_Converter::Convert_to_RGB(hsv);
 	RGB expected_result(31, 52, 29);
 
 	if (result == expected_result)
@@ -64,6 +70,35 @@ bool Test::Test4()
 	return false;
 }
 
+
+
+bool Test::Test_black()
+{
+	HSV hsv(0, 0, 0);
+
+	RGB result = Colour_Converter::Convert_to_RGB(hsv);
+	RGB expected_result(0, 0, 0);
+
+	if (result == expected_result)
+		return true;
+
+	return false;
+}
+
+bool Test::Test_white()
+{
+	{
+		HSV hsv(0, 0, 100);
+
+		RGB result = Colour_Converter::Convert_to_RGB(hsv);
+		RGB expected_result(255, 255, 255);
+
+		if (result == expected_result)
+			return true;
+
+		return false;
+	}
+}
 
 void Test::run()
 {
@@ -89,5 +124,15 @@ void Test::run()
 		std::cout << "Test 4: Sukces! " << std::endl;
 	else
 		std::cout << "Test 4: Porazka " << std::endl;
+
+	if (Test_black())
+		std::cout << "Test black: Sukces! " << std::endl;
+	else
+		std::cout << "Test black: Porazka " << std::endl;
+
+	if (Test_white())
+		std::cout << "Test white: Sukces! " << std::endl;
+	else
+		std::cout << "Test white: Porazka " << std::endl;
 
 }

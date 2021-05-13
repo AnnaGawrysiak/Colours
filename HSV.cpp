@@ -4,9 +4,9 @@
 
 HSV::HSV()
 {
-	hue = -1;
-	saturation = -1;
-	value = -1;
+	hue = 0;
+	saturation = 0;
+	value = 0;
 }
 
 HSV::HSV(double hue_, double saturation_, double value_)
@@ -28,4 +28,38 @@ bool HSV::operator==(const HSV& rhs)
 		return true;
 
 	return false;
+}
+
+double HSV::get_hue() const
+{
+	return hue;
+}
+double HSV::get_saturation() const
+{
+	return saturation;
+}
+double HSV::get_value() const
+{
+	return value;
+}
+
+HSV HSV::modify_hue(double hue_)
+{
+	HSV shade(hue_, saturation, value);
+
+	return shade;
+}
+
+HSV HSV::modify_saturation(double saturation_)
+{
+	HSV shade(hue, saturation_, value);
+
+	return shade;
+}
+
+HSV HSV::modify_value(double value_)
+{
+	HSV shade(hue, saturation, value_);
+
+	return shade;
 }

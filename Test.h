@@ -15,6 +15,8 @@ public:
 	bool Test2();
 	bool Test3();
 	bool Test4();
+	bool Test_black();
+	bool Test_white();
 	void run();
 };
 
